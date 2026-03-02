@@ -3,7 +3,6 @@
     "jsx" : "react-jsx",
     "target": "es2022",
     "module": "commonjs",
-    "rootDir": "./src",
     "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
