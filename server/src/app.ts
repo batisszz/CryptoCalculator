@@ -24,3 +24,5 @@ app.post('/api/ocr', upload.single('image'), processImageOcr);
 app.listen(PORT, () => {
     console.log(`[SERVER] Backend berjalan di http://localhost:${PORT}`);
 });
+
+export default app;
