@@ -75,7 +75,7 @@ function App() {
 
   useEffect(() => {
     Promise.all([
-      fetch('http://localhost:5005/api/cipher/meta').then(res => res.json()),
+      fetch('https://crypto-calculator-lime.vercel.app/api/cipher/meta').then(res => res.json()),
       new Promise(resolve => setTimeout(resolve, 2000)) 
     ])
     .then(([data]) => {
@@ -101,7 +101,7 @@ function App() {
 
   const generateRandomText = async () => {
     try {
-      const res = await fetch('http://localhost:5005/api/generate/text');
+      const res = await fetch('https://crypto-calculator-lime.vercel.app/api/generate/text');
       const data = await res.json();
       if (res.ok) setText(data.result);
     } catch (err) { console.error("Gagal fetch text", err); }
@@ -110,7 +110,7 @@ function App() {
   const generateRandomKey = async () => {
     setKey('Memuat...');
     try {
-      const res = await fetch('http://localhost:5005/api/generate/key', {
+      const res = await fetch('https://crypto-calculator-lime.vercel.app/api/generate/key', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ method, matrixSize: hillSize }),
@@ -124,7 +124,7 @@ function App() {
   const handleProcess = async (action: 'encrypt' | 'decrypt') => {
     setLoading(true); setError(''); setResult(''); setVisualization(null);
     try {
-      const response = await fetch('http://localhost:5005/api/cipher', {
+      const response = await fetch('https://crypto-calculator-lime.vercel.app/api/cipher', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ method, text, key, action }),
@@ -157,7 +157,7 @@ function App() {
     formData.append('action', fileAction);
 
     try {
-      const response = await fetch('http://localhost:5005/api/cipher/file', {
+      const response = await fetch('https://crypto-calculator-lime.vercel.app/api/cipher/file', {
         method: 'POST',
         body: formData, 
       });
@@ -203,7 +203,7 @@ function App() {
     formData.append('image', file); 
 
     try {
-      const response = await fetch('http://localhost:5005/api/ocr', {
+      const response = await fetch('https://crypto-calculator-lime.vercel.app/api/ocr', {
         method: 'POST',
         body: formData,
       });
@@ -500,7 +500,7 @@ function App() {
                   <div className="min-h-[100px]">
                     <div className="flex justify-between items-center mb-2">
                       <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300">Parameter Kunci</label>
-                      <motion.button type="button" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={generateRandomKey} className="flex itenter gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 border border-amber-100 dark:border-amber-800 shadow-sm"> Generate Key</motion.button>
+                      <motion.button type="button" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={generateRandomKey} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 border border-amber-100 dark:border-amber-800 shadow-sm">✨ Generate Kunci Valid</motion.button>
                     </div>
                     <AnimatePresence mode="popLayout">
                       <motion.div key={method} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}>
